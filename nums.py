@@ -9,18 +9,23 @@ def gen_nums(n):
 def return_primes(nums):
     ret = []
     for i in nums:
-        if i > 1:
-
-            for j in range(2, math.ceil(math.sqrt(i))+1):
-
-                if (i % j) == 0:
-                    break
-            else:
-                ret.append(i)
-
-        else:
+        if is_prime(i):
             ret.append(i)
     return ret
+
+
+def is_prime(num):
+    if num > 1:
+
+        for i in range(2, math.ceil(math.sqrt(num)) + 1):
+
+            if (num % i) == 0:
+                return False
+        else:
+            return True
+
+    else:
+        return True
 
 
 def return_hex(nums):
@@ -45,5 +50,17 @@ def nums_from_hex(nums):
     return ret
 
 
-print(return_hex(return_primes(gen_nums(30))))
-print(nums_from_hex(return_hex(return_primes(gen_nums(30)))))
+def main():
+    x = 30
+    x = gen_nums(x)
+    x = return_primes(x)
+    x = return_hex(x)
+    x = nums_from_hex(x)
+
+    print(x)
+
+
+if __name__ == "__main__":
+    main()
+
+
