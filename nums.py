@@ -1,5 +1,6 @@
 import math
 import re
+from collections import Counter
 
 
 def gen_nums(n):
@@ -7,11 +8,7 @@ def gen_nums(n):
 
 
 def return_primes(nums):
-    ret = []
-    for i in nums:
-        if is_prime(i):
-            ret.append(i)
-    return ret
+    return [x for x in nums if is_prime(x)]
 
 
 def is_prime(num):
@@ -29,25 +26,21 @@ def is_prime(num):
 
 
 def return_hex(nums):
-    ret = []
-    for x in nums:
-        ret.append(hex(x))
-    return ret
+    return [hex(x) for x in nums]
 
 
-def nums_from_hex(nums):
-    ret = {}
-    for x in nums:
-        x = x[2:]
-        m = re.findall("[0-9]", x)
+def reformat_hex(nums):
+    return [x[2:] for x in nums]
 
-        for y in m:
-            if y in ret:
-                ret[y] += 1
-            else:
-                ret[y] = 1
 
-    return ret
+def nums_from_hex(hex_nums):
+    nums = []
+
+    temp_nums = [re.findall("[0-9]", x) for x in hex_nums]
+    [nums.extend(el) for el in temp_nums]
+    x = Counter(nums)
+
+    return x
 
 
 def main():
@@ -55,10 +48,10 @@ def main():
     x = gen_nums(x)
     x = return_primes(x)
     x = return_hex(x)
+    x = reformat_hex(x)
     x = nums_from_hex(x)
 
     print(x)
-
 
 if __name__ == "__main__":
     main()
