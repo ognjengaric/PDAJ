@@ -1,4 +1,5 @@
 import math
+import re
 
 
 def gen_nums(n):
@@ -29,4 +30,20 @@ def return_hex(nums):
     return ret
 
 
+def nums_from_hex(nums):
+    ret = {}
+    for x in nums:
+        x = x[2:]
+        m = re.findall("[0-9]", x)
+
+        for y in m:
+            if y in ret:
+                ret[y] += 1
+            else:
+                ret[y] = 1
+
+    return ret
+
+
 print(return_hex(return_primes(gen_nums(30))))
+print(nums_from_hex(return_hex(return_primes(gen_nums(30)))))
