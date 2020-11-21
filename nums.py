@@ -38,9 +38,8 @@ def nums_from_hex(hex_nums):
 
     temp_nums = [re.findall("[0-9]", x) for x in hex_nums]
     [nums.extend(el) for el in temp_nums]
-    x = Counter(nums)
+    return Counter(nums)
 
-    return x
 
 
 def main():
@@ -52,6 +51,7 @@ def main():
     x = nums_from_hex(x)
 
     print(x)
+
 
 if __name__ == "__main__":
     main()
