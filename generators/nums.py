@@ -1,5 +1,6 @@
 import math
 import re
+import tracemalloc
 from collections import Counter
 
 
@@ -42,7 +43,8 @@ def nums_from_hex(hex_nums):
 
 
 def main():
-    x = 30
+
+    x = 1000000
     x = gen_nums(x)
     x = return_primes(x)
     x = return_hex(x)
