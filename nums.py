@@ -4,7 +4,7 @@ from collections import Counter
 
 
 def gen_nums(n):
-    return list(range(1, n))
+    return (x for x in range(1, n))
 
 
 def return_primes(nums):
