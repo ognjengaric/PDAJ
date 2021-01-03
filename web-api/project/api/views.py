@@ -35,3 +35,9 @@ class Generators(APIView):
 
     def post(self, request):
         return helper(request, "g")
+
+
+class Multiprocessing(APIView):
+
+    def post(self, request):
+        return helper(request, "m")

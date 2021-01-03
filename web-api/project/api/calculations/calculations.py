@@ -3,6 +3,7 @@ import time
 from .sequential import sequential
 from .comprehension import comprehension
 from .generators import generators
+from .multiprocessing import multiprocessing
 
 
 def calculate(n, m, points, method):
@@ -15,6 +16,8 @@ def calculate(n, m, points, method):
         result = comprehension(n, m, points)
     elif method == "g":
         result = generators(n, m, points)
+    elif method == "m":
+        result = multiprocessing(n, m, points)
 
     end = time.time()
     _, peak = tracemalloc.get_traced_memory()

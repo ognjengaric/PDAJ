@@ -1,9 +1,11 @@
+from multiprocessing import Pool
+
 def gen_matrix(n, m):
     return ((x, y) for x in range(n) for y in range(m))
 
 
 def parse_points(points):
-    #return (get_coords(x) for x in points)
+    # return (get_coords(x) for x in points)
     return [get_coords(x) for x in points]
 
 
@@ -21,8 +23,7 @@ def get_nearest(specials, point):
     return min(distances)[1]
 
 
-def generators(n, m, specials):
+def multiprocessing(n, m, specials):
     specials = parse_points(specials)
-    matrix = gen_matrix(n, m)
-
-    return (get_nearest(specials, point) for point in matrix)
+    with Pool() as pool:
+        yield from pool.imap(get_nearest, gen_matrix(n, m))
