@@ -18,7 +18,7 @@ def calculate(n, m, points, method):
 
     end = time.time()
     _, peak = tracemalloc.get_traced_memory()
-    max_memory_in_MB = peak / 1024
+    max_memory_in_MB = peak / 10**6
     time_in_s = end - start
     return result, time_in_s, max_memory_in_MB
 
